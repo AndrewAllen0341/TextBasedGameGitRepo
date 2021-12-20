@@ -4,17 +4,16 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{9FA8D53C-4D8D-41E2-B4D0-BF2911B2845D}</ProjectGuid>
-    <OutputType>Exe</OutputType>
-    <RootNamespace>TextBasedGameGitRepo</RootNamespace>
-    <AssemblyName>TextBasedGameGitRepo</AssemblyName>
+    <ProjectGuid>{609952EA-0D40-49BA-8479-E2F22235EDFA}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>IntoTheFjordClassLibrary</RootNamespace>
+    <AssemblyName>IntoTheFjordClassLibrary</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
-    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <Deterministic>true</Deterministic>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
@@ -24,7 +23,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
@@ -43,17 +41,19 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Program.cs" />
+    <Compile Include="CombatBlock.cs" />
+    <Compile Include="Combat.cs" />
+    <Compile Include="CompletedPlayer.cs" />
+    <Compile Include="Enemy.cs" />
+    <Compile Include="GetEnvironment.cs" />
+    <Compile Include="Merchant.cs" />
+    <Compile Include="Peasant.cs" />
+    <Compile Include="PlayerStats.cs" />
+    <Compile Include="Prayer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="App.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\IntoTheFjordClassLibrary\IntoTheFjordClassLibrary.csproj">
-      <Project>{609952ea-0d40-49ba-8479-e2f22235edfa}</Project>
-      <Name>IntoTheFjordClassLibrary</Name>
-    </ProjectReference>
+    <Compile Include="Weapon.cs" />
+    <Compile Include="WessexNoble.cs" />
+    <Compile Include="WessexWarrior.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
