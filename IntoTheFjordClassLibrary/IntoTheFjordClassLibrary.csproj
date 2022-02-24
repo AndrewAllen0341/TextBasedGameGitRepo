@@ -41,11 +41,14 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CombatFinalBlock.cs" />
     <Compile Include="CombatBlock.cs" />
     <Compile Include="Combat.cs" />
+    <Compile Include="CombatFinal.cs" />
+    <Compile Include="CombatGuard.cs" />
+    <Compile Include="CombatGuardBlock.cs" />
     <Compile Include="CompletedPlayer.cs" />
     <Compile Include="Enemy.cs" />
-    <Compile Include="GetEnvironment.cs" />
     <Compile Include="Merchant.cs" />
     <Compile Include="Peasant.cs" />
     <Compile Include="PlayerStats.cs" />
@@ -53,6 +56,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Weapon.cs" />
     <Compile Include="WessexNoble.cs" />
+    <Compile Include="WessexCityWatch.cs" />
     <Compile Include="WessexWarrior.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

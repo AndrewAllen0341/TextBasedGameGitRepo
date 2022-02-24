@@ -11,10 +11,10 @@ namespace IntoTheFjordClassLibrary
 
         public WessexWarrior()
         {
-            MaxLife = 8;
-            MaxDamage = 5;
+            MaxLife = 50;
+            MaxDamage = 30;
             Name = "Wessex Warrior";
-            Life = 8;
+            Life = 50;
             HitChance = 25;
             Block = 5;
             MinDamage = 1;

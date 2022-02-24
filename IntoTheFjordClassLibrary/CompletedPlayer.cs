@@ -24,21 +24,21 @@ namespace IntoTheFjordClassLibrary
             switch (UserPrayer)
             {
                 case Prayer.Thor:
-                    HitChance += 3;
+                    HitChance += 6;
                     Block = Block;
-                    MaxLife += 5;
+                    MaxLife += 10;
                     Life = MaxLife;
                     break;
                 case Prayer.Loki:
-                    HitChance += 5;
+                    HitChance += 10;
                     Block = Block;
-                    MaxLife += 3;
+                    MaxLife += 6;
                     Life = MaxLife;
                     break;
                 case Prayer.Magni:
                     HitChance = HitChance;
                     Block += 5;
-                    MaxLife += 3;
+                    MaxLife += 10;
                     Life = MaxLife;
                     break;
                 case Prayer.NoGod:

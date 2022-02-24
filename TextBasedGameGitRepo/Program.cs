@@ -14,6 +14,7 @@ namespace TextBasedGame
 
         static void Main(string[] args)
         {
+            #region StartUp Screen
             Console.Title = "Into the Fjord";
             Console.WriteLine(@"
 
@@ -43,19 +44,19 @@ namespace TextBasedGame
                                  (Use the keyboard for all entries throughout the game)
                                                        
 ");
+            #endregion
 
             #region Variables
             //Insert Running Variable Here.
-            bool PlayGame = true;
-            //Declared Weapons 
-            Weapon sword = new Weapon(1, 10, "sword", 7);
-            Weapon handAxe = new Weapon(1, 9, "axe", 8);
-            Weapon longAxe = new Weapon(2, 12, "long axe", 4);
 
+            //Declared Weapons 
+            Weapon sword = new Weapon(2, 20, "sword", 14);
+            Weapon handAxe = new Weapon(2, 18, "axe", 16);
+            Weapon longAxe = new Weapon(4, 24, "long axe", 8);
             #endregion
 
-            do
-            {
+            bool Exit = false;
+
                 //User choice to play the game
                 string UserChoice = Console.ReadKey(true).Key.ToString();
                 Console.Clear();
@@ -90,6 +91,8 @@ namespace TextBasedGame
                     $"No, No it's Magni! The god of strength to help unburden the weight of your armor!\n" +
                     $"Or is it Loki? The god of mischief to help trick your enemies into an ususpecting death?\n");
                 Thread.Sleep(2000);
+
+
                 Console.WriteLine(@"
 Closing your eyes for just a few seconds a vision of your mother comes to you, she is praying that you come home safe.
 
@@ -97,7 +100,8 @@ Closing your eyes for just a few seconds a vision of your mother comes to you, s
                                                    A: Thor
                                                    B: Magni
                                                    C: Loki
-                                                   D: No God");
+                                                   D: No God
+                                                   E: Exit Game");
                 //User choice for their god (Bonus attributes)
                 string UserGod = Console.ReadKey(true).Key.ToString();
                 Prayer p = new Prayer();
@@ -181,6 +185,8 @@ Closing your eyes for just a few seconds a vision of your mother comes to you, s
                         Typewrite("Valhalla isn't real and it's a waste of life trying to die to enter it's gates.");
                         p = Prayer.NoGod;
                         break;
+                    case "E":
+                        goto ExitStatment;
                     default:
                         Thread.Sleep(1500);
                         Console.WriteLine("Halfdan looks at you smiling and belts out the loudest laugh you have ever heard outside\n" +
@@ -199,6 +205,7 @@ Closing your eyes for just a few seconds a vision of your mother comes to you, s
                         p = Prayer.Invalid;
                         break;
                 }
+
                 Thread.Sleep(2000);
                 Console.Write("\n\nHalfdan - ");
                 Thread.Sleep(500);
@@ -228,7 +235,8 @@ Closing your eyes for just a few seconds a vision of your mother comes to you, s
                                            What weapon do you choose?
                                                    A: Sword
                                                    B: Axe
-                                                   C: Long Axe");
+                                                   C: Long Axe
+                                                   D: Exit Game");
                 //User choice for their god (Bonus attributes)
                 string UserWeapon = Console.ReadKey(true).Key.ToString();
 
@@ -237,13 +245,13 @@ Closing your eyes for just a few seconds a vision of your mother comes to you, s
                 {
                     case "A":
                         Console.Clear();
-                        Console.WriteLine("Moving swiftly you grab the short sword and fix the scabbard to the belt wrapped around your waiste.\n");
+                        Console.WriteLine("Moving swiftly you grab the short sword and fix the scabbard to the belt wrapped around your waist.\n");
                         Thread.Sleep(2500);
                         Console.Write("Halfdan - ");
                         Thread.Sleep(500);
                         Typewrite($"{UserName} let's hope that sword is sharper than it looks! Stick with me and maybe you shall see the \n" +
                             $"halls of Valhalla one day.\n");
-                        CompletedPlayer = new CompletedPlayer(UserName, 70, 5, 50, 50, p, sword);
+                        CompletedPlayer = new CompletedPlayer(UserName, 70, 15, 50, 50, p, sword);
                         break;
                     case "B":
                         Console.Clear();
@@ -253,7 +261,7 @@ Closing your eyes for just a few seconds a vision of your mother comes to you, s
                         Thread.Sleep(500);
                         Typewrite($"{UserName} let's hope that axe is sharper than it looks! Stick with me and maybe you shall see the \n" +
                             $"halls of Valhalla one day.\n");
-                        CompletedPlayer = new CompletedPlayer(UserName, 70, 5, 50, 50, p, handAxe);
+                        CompletedPlayer = new CompletedPlayer(UserName, 70, 15, 50, 50, p, handAxe);
                         break;
                     case "C":
                         Console.Clear();
@@ -263,8 +271,10 @@ Closing your eyes for just a few seconds a vision of your mother comes to you, s
                         Thread.Sleep(500);
                         Typewrite($"{UserName} let's hope that long axe isn't too heavy for you! Stick with me and maybe you shall see the \n" +
                             $"halls of Valhalla one day.\n");
-                        CompletedPlayer = new CompletedPlayer(UserName, 70, 5, 50, 50, p, longAxe);
+                        CompletedPlayer = new CompletedPlayer(UserName, 70, 15, 50, 50, p, longAxe);
                         break;
+                    case "D":
+                        goto ExitStatment;
                     default:
                         Console.Clear();
                         Weapon[] weapons = { sword, handAxe, longAxe };
@@ -277,7 +287,7 @@ Closing your eyes for just a few seconds a vision of your mother comes to you, s
                         Thread.Sleep(500);
                         Typewrite($"{UserName} that might be the rusties {weapon.Name} I have ever seen! Stick with me and maybe you shall see the \n" +
                             $"halls of Valhalla one day.\n");
-                        CompletedPlayer player = new CompletedPlayer(UserName, 70, 5, 50, 50, p, weapon);
+                        CompletedPlayer player = new CompletedPlayer(UserName, 70, 15, 50, 50, p, weapon);
                         break;
                 }//End of weapon switch
                 Thread.Sleep(3500);
@@ -305,16 +315,15 @@ Closing your eyes for just a few seconds a vision of your mother comes to you, s
                     $"The {enemy.Name} steps forward to meet you on the field, a brave but stupid move.");
                 while (CompletedPlayer.Life > 0 && enemy.Life > 0)
                 {
-                    
+
                     Console.WriteLine(@"
-
-
 
                                             Please choose an action:
                                             A: Press the attack.
                                             B: Sit back in guarded stance.
                                             C: Player Info.
-                                            D: Enemy Info.");
+                                            D: Enemy Info.
+                                            E: Exit Game.");
 
                     UserChoice = Console.ReadKey(true).Key.ToString();
                     Console.Clear();
@@ -332,9 +341,12 @@ Closing your eyes for just a few seconds a vision of your mother comes to you, s
                         case "D":
                             Console.WriteLine(enemy);
                             break;
+                        case "E":
+                            goto ExitStatment;
                         default:
                             break;
                     }
+
                 }
                 Thread.Sleep(1500);
                 Console.WriteLine($"\nYour foe drops to the sand clutching at his wounds, he fought well for a simple {enemy.Name}.\n" +
@@ -346,35 +358,230 @@ Closing your eyes for just a few seconds a vision of your mother comes to you, s
                 Thread.Sleep(2000);
                 Console.WriteLine("\nHalfdan turns to you with a bloodied tunic.");
                 Thread.Sleep(1500);
-                Console.Write("Halfdan - ");
+                Console.Write("\nHalfdan - ");
                 Thread.Sleep(500);
                 Typewrite($"Don't look worried lad it's not my blood. We need to keep moving before they have time to rally the \n" +
-                    $"fighting men.");
+                    $"fighting men.\n");
                 Thread.Sleep(1000);
                 Console.WriteLine("\nMoving swiftly you gather with the rest of the men and begin to move towards the city. Directly up the road \n" +
                     "is a small wooden guard house, you can see shadows and silhouettes of men moving inside.\n");
                 Thread.Sleep(1500);
                 Console.WriteLine("Moving in sync almost like a flock of birds moving at once the front line of warrior begin to form a shield wall\n" +
-                    "for protection.");
+                    "for protection.\n");
                 Thread.Sleep(1500);
                 Console.WriteLine("Rocks, arrows and other projectiles bounce off of the shield wall like waves on the bow of a ship on open water and \n" +
                     "just like our ships nothing can stop what is already in motion.\n");
                 Thread.Sleep(1500);
                 Console.Write("Halfdan - ");
                 Typewrite($"{UserName} you have fought well so far but the battle has just begun, as soon as we get to the \n" +
-                    $"guard house we make our move.\n");
+                    $"guard house we make our move.\n\n");
                 Thread.Sleep(1500);
                 Console.Write($"{UserName} - ");
                 Typewrite("I am with you to the end!\n");
                 Thread.Sleep(1500);
-                Console.WriteLine("Halfdan gives you a look, an untold sign between the two of you and you both break ranks around the shield wall\n" +
-                    "to engage the enenmy.");
+                Console.WriteLine("\nHalfdan gives you a look, an untold sign between the two of you and you both break ranks around the shield wall\n" +
+                    "to engage the enenmy.\n");
                 Thread.Sleep(2000);
 
+                #region 2nd Encounter
+                Peasant p3 = new Peasant();
+                Merchant m2 = new Merchant();
+                WessexCityWatch w1 = new WessexCityWatch();
+                WessexCityWatch w2 = new WessexCityWatch();
+                WessexCityWatch w3 = new WessexCityWatch();
+                WessexWarrior ww1 = new WessexWarrior();
+                Enemy[] enemiesGuardhouse = { p3, m2, w1, w2, w3, ww1 };
+                int RandomIndexGuardhouse = new Random().Next(enemiesGuardhouse.Length);
+                Enemy enemyGuardhouse = enemiesGuardhouse[RandomIndex];
+                #endregion
+
+                Console.WriteLine($"As you sprint towards the guardhouse you single out an {enemyGuardhouse.Name} to suffer your wrath!");
+                Thread.Sleep(2000);
+                Console.WriteLine($"\nYou run into the {enemyGuardhouse.Name} at full speed knocking both of you to the ground.... You and your foe\n" +
+                    $"immediatly jump to your feet to face each other.");
+                while (CompletedPlayer.Life > 0 && enemyGuardhouse.Life > 0)
+                {
+
+                    Console.WriteLine(@"
+
+                                            Please choose an action:
+                                            A: Press the attack.
+                                            B: Sit back in guarded stance.
+                                            C: Player Info.
+                                            D: Enemy Info.
+                                            E: Exit Game.");
+
+                    UserChoice = Console.ReadKey(true).Key.ToString();
+                    Console.Clear();
+                    switch (UserChoice)
+                    {
+                        case "A":
+                            CombatGuard.DoBattle(CompletedPlayer, enemyGuardhouse);
+                            break;
+                        case "B":
+                            CombatGuardBlock.DoBattleBlock(CompletedPlayer, enemyGuardhouse);
+                            break;
+                        case "C":
+                            Console.WriteLine(CompletedPlayer);
+                            break;
+                        case "D":
+                            Console.WriteLine(enemyGuardhouse);
+                            break;
+                        case "E":
+                            Console.WriteLine("You runn away like a coward. You will never get into Valhalla now.");
+                            Thread.Sleep(2500);
+                            goto ExitStatment;
+                        default:
+                            break;
+                    }
+
+                }
+                Thread.Sleep(1500);
+                Console.WriteLine($"\nWith the final blow you lock eyes with the {enemyGuardhouse.Name} color begins to leave \n" +
+                    $"his face and he slowly slumps to his knees and hits the ground. With one final breath he coughs up foamy blood.\n");
+                Thread.Sleep(1500);
+                Console.WriteLine("You here the clash of steel, thumping of shields, and the cries of warriors for their loved ones.\n" +
+                    $"Looking around to gather your bearings you realize you are at the {GetEnvironment()}");
+                bool Death = false;
+                do
+                {
 
 
-            } while (PlayGame);
+                    Thread.Sleep(1500);
+                    #region Final Encounter
+                    WessexNoble wn1 = new WessexNoble();
+                    WessexCityWatch w4 = new WessexCityWatch();
+                    WessexCityWatch w5 = new WessexCityWatch();
+                    WessexWarrior ww2 = new WessexWarrior();
+                    Enemy[] enemiesFinal = { wn1, ww2, w4, w5 };
+                    int RandomIndexFinal = new Random().Next(enemiesFinal.Length);
+                    Enemy enemyFinal = enemiesFinal[RandomIndex];
+                    #endregion
+                    Console.WriteLine($"\nAs you look at the mangled mess of men fighting you hear a {enemyFinal.Name} running\n" +
+                        $"towards you.");
+                    Thread.Sleep(1500);
+                    Console.WriteLine($"\nYou turn to engage the {enemyFinal.Name}.");
+                    Thread.Sleep(1500);
+                    bool Reload = false;
+                    int Score = 2;
+                    do
+                    {
+
+                        Console.WriteLine(@"
+
+                                            Please choose an action:
+                                            A: Press the attack.
+                                            B: Sit back in guarded stance.
+                                            C: Player Info.
+                                            D: Enemy Info.
+                                            E: Exit Game.");
+
+                        UserChoice = Console.ReadKey(true).Key.ToString();
+                        Console.Clear();
+                        switch (UserChoice)
+                        {
+                            case "A":
+                                CombatGuard.DoBattle(CompletedPlayer, enemyFinal);
+                                if (enemyFinal.Life <= 0)
+                                {
+                                    Console.WriteLine($"\nYou struck down {enemyFinal.Name}");
+                                    Reload = true;
+                                    Score++;
+                                }
+                                break;
+                            case "B":
+                                CombatGuardBlock.DoBattleBlock(CompletedPlayer, enemyFinal);
+                                break;
+                            case "C":
+                                Console.WriteLine(CompletedPlayer);
+                            Console.WriteLine($"You have slain {Score} English. Only {Score - 15} until I truly impress the gods!");
+                                break;
+                            case "D":
+                                Console.WriteLine(enemyFinal);
+                                break;
+                            case "E":
+                                Console.WriteLine("You flee the field of battle to fight another day.");
+                                Thread.Sleep(2000);
+                                goto ExitStatment;
+                            default:
+                                break;
+                        }
+                        if (CompletedPlayer.Life <= 0)
+                        {
+                            if (Score >= 15)
+                            {
+                                Console.WriteLine("\nSlowly touching your body you notice that your hands come up with wet with dark red blood.\n" +
+                                    "Falling to your knees you can feel the coolness of the moisture in the air on your skin and your world slowly\n" +
+                                    "fades to black.");
+                                Thread.Sleep(2000);
+                                Console.Write("Halfdan - ");
+                                Typewrite($"Ahhhhh {UserName} I am sad to see you here with me, but glad I have a friend to walk to The Halls of Valhalla with.\n" +
+                                    $"You must have really impressed the gods! How many of those bastards did you get?");
+                                Thread.Sleep(1500);
+                                Console.Write($"{UserName} - ");
+                                Typewrite($"{Score}..... I cut down {Score}");
+                                Death = true;
+                                goto ExitStatment;
+                            }
+                            if (Score <= 14)
+                            {
+                                Console.WriteLine("\nSlowly touching your body you notice that your hands come up with wet with dark red blood.\n" +
+                                    "Falling to your knees you can feel the coolness of the moisture in the air on your skin and your world slowly\n" +
+                                    "fades to black.");
+                                Thread.Sleep(2000);
+                                Console.Write("Halfdan - ");
+                                Typewrite($"Ahhhhh {UserName} I am sad to see you here with me, but glad I have a friend to walk to The Halls of Valhalla with.\n" +
+                                    $"You must have really impressed the gods! How many of those bastards did you get?");
+                                Thread.Sleep(1500);
+                                Console.Write($"{UserName} - ");
+                                Typewrite($"{Score}..... I cut down {Score}");
+                                Thread.Sleep(2000);
+                                Console.Write("Halfdan - ");
+                                Typewrite($"You only cut down {Score}?? I know the gods will be happy that {Score * 2} Englishmen got to meet 'Jesus Christ'\n" +
+                                    $"I am surprised you aren't in Niflhel with the elderly!!");
+                                Death = true;
+                                goto ExitStatment;
+                            }
+                        }
+                    } while (!Reload && !Exit);
+                } while (!Death);
+
+            #region GoTo ExitStatement
+            ExitStatment:
+                Exit = true;
+                Console.WriteLine(@"
+                                        _____ _            _____          _ 
+                                       |_   _| |          |  ___|        | |
+                                         | | | |__   ___  | |__ _ __   __| |
+                                         | | | '_ \ / _ \ |  __| '_ \ / _` |
+                                         | | | | | |  __/ | |__| | | | (_| |
+                                         \_/ |_| |_|\___| \____/_| |_|\__,_|
+
+");
+                Typewrite($"{ UserName}, Thank you for playing! I hope you enjoyed your adventure as much as I enjoyed creating it.\n");
+                Typewrite("\nIf you would like to look at more of my work please go to 'double-a-dev.com'");
+                #endregion
+
         }//End SVM
+
+        #region Environment
+
+        private static string GetEnvironment()
+        {
+            string[] Location =
+            {
+                        "steps of the guardhouse", "middle of the battlefield", "center of the townsquare", "stable"
+                    };
+            Random RandomNumberGen = new Random();
+            int LocationSelector = RandomNumberGen.Next(Location.Length);
+
+            return Location[LocationSelector];
+
+        }
+
+        #endregion
+
+        #region TypewriteFunction
         static void Typewrite(string message) //Typewrite class to print out text
         {
             for (int i = 0; i < message.Length; i++)
@@ -383,5 +590,7 @@ Closing your eyes for just a few seconds a vision of your mother comes to you, s
                 System.Threading.Thread.Sleep(60);
             }
         }//End Typewrite Class
+        #endregion
+
     }//End Class
 }//End namespace
