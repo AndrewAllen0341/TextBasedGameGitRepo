@@ -494,7 +494,7 @@ Closing your eyes for just a few seconds a vision of your mother comes to you, s
                                 break;
                             case "C":
                                 Console.WriteLine(CompletedPlayer);
-                            Console.WriteLine($"You have slain {Score} English. Only {Score - 15} until I truly impress the gods!");
+                            Console.WriteLine($"You have slain {Score} English. Only {15 - Score} until I truly impress the gods!");
                                 break;
                             case "D":
                                 Console.WriteLine(enemyFinal);

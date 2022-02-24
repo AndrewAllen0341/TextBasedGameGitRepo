@@ -15,9 +15,9 @@ namespace IntoTheFjordClassLibrary
             MaxDamage = 30;
             Name = "Wessex Warrior";
             Life = 50;
-            HitChance = 25;
+            HitChance = 45;
             Block = 5;
-            MinDamage = 1;
+            MinDamage = 5;
             Description = "These warrior are good enough fighters even if they are farmers first.\n";
         }
         public WessexWarrior(string name, int life, int maxLife, int hitChance, int block, int minDamage, int maxDamage, string description) { }
